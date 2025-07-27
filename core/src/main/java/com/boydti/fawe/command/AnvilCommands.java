@@ -172,15 +172,8 @@ public class AnvilCommands {
     @CommandPermissions("worldedit.anvil.remapall")
     public void remapall(Player player, String folder) throws WorldEditException {
         ClipboardRemapper mapper;
-        ClipboardRemapper.RemapPlatform from;
-        ClipboardRemapper.RemapPlatform to;
-        if (Fawe.imp().getPlatform().equalsIgnoreCase("nukkit")) {
-            from = ClipboardRemapper.RemapPlatform.PC;
-            to = ClipboardRemapper.RemapPlatform.PE;
-        } else {
-            from = ClipboardRemapper.RemapPlatform.PE;
-            to = ClipboardRemapper.RemapPlatform.PC;
-        }
+        ClipboardRemapper.RemapPlatform from = ClipboardRemapper.RemapPlatform.PE;
+        ClipboardRemapper.RemapPlatform to = ClipboardRemapper.RemapPlatform.PC;
         RemapFilter filter = new RemapFilter(from, to);
         RemapFilter result = runWithWorld(player, folder, filter, true);
         if (result != null) player.print(BBC.getPrefix() + BBC.VISITOR_BLOCK.format(result.getTotal()));

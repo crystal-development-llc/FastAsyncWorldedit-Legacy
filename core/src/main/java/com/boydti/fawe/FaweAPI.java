@@ -164,7 +164,6 @@ public class FaweAPI {
     /**
      * Wrap some object into a FawePlayer<br>
      * - org.bukkit.entity.Player
-     * - org.spongepowered.api.entity.living.player
      * - com.sk89q.worldedit.entity.Player
      * - String (name)
      * - UUID (player UUID)

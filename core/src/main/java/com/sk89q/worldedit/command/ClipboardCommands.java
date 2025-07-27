@@ -372,20 +372,11 @@ public class ClipboardCommands extends MethodCommands {
         } else {
             String urlText = url.toString();
             if (Settings.IMP.WEB.SHORTEN_URLS) {
+                // TODO fix or remove
                 try {
                     urlText = MainUtil.getText("https://empcraft.com/s/?" + URLEncoder.encode(url.toString(), "UTF-8"));
                 } catch (IOException e) {
                     e.printStackTrace();
-                }
-            }
-            if (Fawe.imp().getPlatform().equalsIgnoreCase("nukkit")) {
-                FormBuilder form = Fawe.imp().getFormBuilder();
-                FawePlayer<Object> fp = FawePlayer.wrap(player);
-                if (form != null && fp != FakePlayer.getConsole().toFawePlayer()) {
-                    form.setTitle("Download Clipboard");
-                    form.addInput("url:", urlText, urlText);
-                    form.display(fp);
-                    return;
                 }
             }
             new Message().text(BBC.DOWNLOAD_LINK.f(url)).link(url.toString()).send(player);

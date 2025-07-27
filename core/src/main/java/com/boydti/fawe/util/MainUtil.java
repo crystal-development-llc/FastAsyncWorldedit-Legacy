@@ -765,7 +765,7 @@ public class MainUtil {
             String methodName = elem.getMethodName();
             int index = elem.getClassName().lastIndexOf('.');
             String className = elem.getClassName();
-//            if (!(index == -1 || className.startsWith("io.netty") || className.startsWith("javax") || className.startsWith("java") || className.startsWith("sun") || className.startsWith("net.minecraft") || className.startsWith("org.spongepowered") || className.startsWith("org.bukkit") || className.startsWith("com.google"))) {
+//            if (!(index == -1 || className.startsWith("io.netty") || className.startsWith("javax") || className.startsWith("java") || className.startsWith("sun") || className.startsWith("net.minecraft") || className.startsWith("org.bukkit") || className.startsWith("com.google"))) {
 //                packages.add(className.substring(0, index-1));
 //            }
             String name = className.substring(index == -1 ? 0 : index + 1);
