@@ -3,6 +3,7 @@ package com.boydti.fawe.config;
 import com.boydti.fawe.Fawe;
 import com.boydti.fawe.configuration.MemorySection;
 import com.boydti.fawe.configuration.file.YamlConfiguration;
+import com.boydti.fawe.util.ReflectionUtils;
 import com.boydti.fawe.util.StringMan;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -235,7 +236,7 @@ public class Config {
         return value != null ? value.toString() : "null";
     }
 
-    private void save(PrintWriter writer, Class clazz, final Object instance, int indent) {
+    private void save(PrintWriter writer, Class clazz, Object instance, int indent) {
         try {
             String CTRF = System.lineSeparator();
             String spacing = StringMan.repeat(" ", indent);
@@ -448,10 +449,12 @@ public class Config {
      */
     private void setAccessible(Field field) throws NoSuchFieldException, IllegalAccessException {
         field.setAccessible(true);
-        try {
-        	Field modifiersField = field.getClass().getDeclaredField("modifiers");
-        	modifiersField.setAccessible(true);
-        	modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
-        } catch (NoSuchFieldException e) {}
+        if (Modifier.isFinal(field.getModifiers())) {
+            Field modifiersField = ReflectionUtils.getModifiersField(field.getClass());
+            if (modifiersField != null) {
+                modifiersField.setAccessible(true);
+                modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+            }
+        }
     }
 }

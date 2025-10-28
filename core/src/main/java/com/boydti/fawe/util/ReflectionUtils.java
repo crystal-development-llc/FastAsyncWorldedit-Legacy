@@ -115,6 +115,26 @@ public class ReflectionUtils {
         return ReflectionFactory.getReflectionFactory()..newConstructorAccessor(enumClass.getDeclaredConstructor(parameterTypes));
     }*/
 
+    /**
+     * From https://stackoverflow.com/a/69418150/17528745
+     * NOTE Need add args: --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED
+     */
+    public static Field getModifiersField(Class<?> fieldClass) {
+        Field modifiers = null;
+        try {
+            Method getDeclaredFields0 = Class.class.getDeclaredMethod("getDeclaredFields0", boolean.class);
+            getDeclaredFields0.setAccessible(true);
+            Field[] fields = (Field[]) getDeclaredFields0.invoke(fieldClass, false);
+            for (Field each : fields) {
+                if ("modifiers".equals(each.getName())) {
+                    modifiers = each;
+                    break;
+                }
+            }
+        } catch (Throwable ignore) {}
+        return modifiers;
+    }
+
     public static void setFailsafeFieldValue(Field field, Object target, Object value)
             throws NoSuchFieldException, IllegalAccessException {
 
@@ -124,13 +144,14 @@ public class ReflectionUtils {
         // next we change the modifier in the Field instance to
         // not be final anymore, thus tricking reflection into
         // letting us modify the static final field
-        Field modifiersField = Field.class.getDeclaredField("modifiers");
-        modifiersField.setAccessible(true);
-        int modifiers = modifiersField.getInt(field);
-
-        // blank out the final bit in the modifiers int
-        modifiers &= ~Modifier.FINAL;
-        modifiersField.setInt(field, modifiers);
+        if (Modifier.isFinal(field.getModifiers())) {
+            Field modifiersField = getModifiersField(field.getClass());
+            if (modifiersField != null) {
+                modifiersField.setAccessible(true);
+                // blank out the final bit in the modifiers int
+                modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+            }
+        }
 
         try {
             //FieldAccessor fa = ReflectionFactory.getReflectionFactory().newFieldAccessor(field, false);
