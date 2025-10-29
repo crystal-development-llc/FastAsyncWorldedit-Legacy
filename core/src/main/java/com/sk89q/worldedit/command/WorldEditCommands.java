@@ -19,11 +19,11 @@
 
 package com.sk89q.worldedit.command;
 
+import co.crystaldev.fawe.core.PluginInfo;
 import com.boydti.fawe.Fawe;
 import com.boydti.fawe.FaweVersion;
 import com.boydti.fawe.config.BBC;
 import com.boydti.fawe.config.Settings;
-import com.boydti.fawe.object.FawePlayer;
 import com.boydti.fawe.util.*;
 import com.sk89q.minecraft.util.commands.Command;
 import com.sk89q.minecraft.util.commands.CommandContext;
@@ -38,7 +38,6 @@ import com.sk89q.worldedit.extension.platform.Capability;
 import com.sk89q.worldedit.extension.platform.Platform;
 import com.sk89q.worldedit.extension.platform.PlatformManager;
 import java.io.IOException;
-import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -61,25 +60,15 @@ public class WorldEditCommands {
             max = 0
     )
     public void version(Actor actor) throws WorldEditException {
-        FaweVersion fVer = Fawe.get().getVersion();
-        String fVerStr = fVer == null ? "unknown" : fVer.year + "." + fVer.month + "." + fVer.day + "-" + Integer.toHexString(fVer.hash) + "-" + fVer.build;
-        actor.print(BBC.getPrefix() + "FAWE " + fVerStr + " by Empire92");
-        if (fVer != null) {
+        actor.print(BBC.getPrefix() + PluginInfo.GITHUB_NAME + " " + PluginInfo.VERSION + " by " + PluginInfo.GITHUB_ORG);
+        FaweVersion version = Fawe.get().getVersion();
+        if (version != null) {
             actor.printDebug("------------------------------------");
-            FaweVersion version = Fawe.get().getVersion();
             Date date = new GregorianCalendar(2000 + version.year, version.month - 1, version.day).getTime();
             actor.printDebug(" - DATE: " + date.toLocaleString());
             actor.printDebug(" - COMMIT: " + Integer.toHexString(version.hash));
             actor.printDebug(" - BUILD: #" + version.build);
             actor.printDebug(" - PLATFORM: " + Settings.IMP.PLATFORM);
-            Updater updater = Fawe.get().getUpdater();
-            if (updater == null) {
-                actor.printDebug(" - UPDATES: DISABLED");
-            } else if (updater.isOutdated()) {
-                actor.printDebug(" - UPDATES: " + updater.getChanges().split("\n").length + " (see /fawe cl)");
-            } else {
-                actor.printDebug(" - UPDATES: Latest Version");
-            }
             actor.printDebug("------------------------------------");
         }
         actor.print(BBC.getPrefix() + "WorldEdit " + WorldEdit.getVersion() + " by sk89q");
