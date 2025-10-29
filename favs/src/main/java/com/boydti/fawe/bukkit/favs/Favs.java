@@ -1,5 +1,6 @@
 package com.boydti.fawe.bukkit.favs;
 
+import co.crystaldev.fawe.core.PluginInfo;
 import com.boydti.fawe.Fawe;
 import com.boydti.fawe.bukkit.BukkitCommand;
 import com.boydti.fawe.object.FaweCommand;
@@ -53,7 +54,7 @@ public class Favs extends JavaPlugin {
                     e.printStackTrace();
                     Fawe.debug("====== INSTALL VOXELSNIPER ======");
                     Fawe.debug("FAVS requires VoxelSniper to function correctly");
-                    Fawe.debug("Info: https://github.com/boy0001/FastAsyncWorldedit/releases/");
+                    Fawe.debug("Info: " + PluginInfo.GITHUB_URL);
                     Fawe.debug("===============================");
                     return;
                 }

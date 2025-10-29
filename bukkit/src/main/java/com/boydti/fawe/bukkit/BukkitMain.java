@@ -1,5 +1,6 @@
 package com.boydti.fawe.bukkit;
 
+import co.crystaldev.fawe.core.PluginInfo;
 import com.boydti.fawe.Fawe;
 import com.boydti.fawe.util.Jars;
 import java.io.File;
@@ -68,7 +69,7 @@ public class BukkitMain extends JavaPlugin {
                 e.printStackTrace();
                 Fawe.debug("====== INSTALL WORLDEDIT ======");
                 Fawe.debug("FAWE requires WorldEdit to function correctly");
-                Fawe.debug("Info: https://github.com/boy0001/FastAsyncWorldedit/releases/");
+                Fawe.debug("Info: " + PluginInfo.GITHUB_URL);
                 Fawe.debug("===============================");
                 return;
             }
