@@ -30,8 +30,10 @@ redprotect = "1.9.6"
 zstd-jni = "1.1.1"
 
 # Gradle
-publish = "0.34.0"     # https://github.com/vanniktech/gradle-maven-publish-plugin/releases
-shadow = "9.2.2"       # https://github.com/GradleUp/shadow/releases
+blossom = "2.2.0"        # https://github.com/KyoriPowered/blossom/releases
+ideaExt = "1.3"          # https://github.com/jetbrains/gradle-idea-ext-plugin
+publish = "0.34.0"       # https://github.com/vanniktech/gradle-maven-publish-plugin/releases
+shadow = "9.2.2"         # https://github.com/GradleUp/shadow/releases
 
 [libraries]
 # Runtime
@@ -67,5 +69,7 @@ redprotect = { group = "net.fabiozumbi12", name = "redprotect", version.ref = "r
 zstdJni = { group = "com.github.luben", name = "zstd-jni", version.ref = "zstd-jni" }
 
 # Gradle
+blossom-plugin = { module = "net.kyori.blossom:net.kyori.blossom.gradle.plugin", version.ref = "blossom" }
+ideaExt-plugin = { module = "org.jetbrains.gradle.plugin.idea-ext:org.jetbrains.gradle.plugin.idea-ext.gradle.plugin", version.ref = "ideaExt" }
 publish-plugin = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "publish" }
 shadow-plugin = { module = "com.gradleup.shadow:shadow-gradle-plugin", version.ref = "shadow" }

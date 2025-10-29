@@ -3,6 +3,8 @@ plugins {
 }
 
 dependencies {
+    implementation(libs.blossom.plugin)
+    implementation(libs.ideaExt.plugin)
     implementation(libs.publish.plugin)
     implementation(libs.shadow.plugin)
 

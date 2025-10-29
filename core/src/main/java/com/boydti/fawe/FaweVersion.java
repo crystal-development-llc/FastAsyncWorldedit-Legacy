@@ -1,7 +1,22 @@
 package com.boydti.fawe;
 
+import co.crystaldev.fawe.core.PluginInfo;
+
 public class FaweVersion {
     public final int year, month, day, hash, build, major, minor, patch;
+
+    public FaweVersion() {
+        String[] date = PluginInfo.DATE.split("\\.");
+        this.year = Integer.parseInt(date[0]);
+        this.month = Integer.parseInt(date[1]);
+        this.day = Integer.parseInt(date[2]);
+        this.hash = Integer.parseInt(PluginInfo.COMMIT, 16);
+        this.build = 0;
+        String[] semver = PluginInfo.VERSION.replace("-SNAPSHOT", "").split("\\.");
+        this.major = Integer.parseInt(semver[0]);
+        this.minor = Integer.parseInt(semver[1]);
+        this.patch = Integer.parseInt(semver[2]);
+    }
 
     public FaweVersion(String version) {
         String[] split = version.substring(version.indexOf('=') + 1).split("-");

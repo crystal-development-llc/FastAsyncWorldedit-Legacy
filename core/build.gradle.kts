@@ -1,3 +1,7 @@
+plugins {
+    id("fawe.blossom-conventions")
+}
+
 dependencies {
     api(libs.fastutilLite)
     api(libs.zstdJni)
@@ -14,15 +18,16 @@ dependencies {
 
 }
 
-tasks {
-    processResources {
-        val props = mutableMapOf(
-            "version" to project.version.toString(),
-            "name" to project.rootProject.name,
-        )
-        inputs.properties(props)
-        filesMatching("fawe.properties") {
-            expand(props)
+sourceSets {
+    main {
+        blossom {
+            javaSources {
+                property("commit", latestCommitHash())
+                property("date", latestCommitDateTime())
+                property("github_org", findProperty("github_org").toString())
+                property("github_name", findProperty("github_name").toString())
+                property("version", project.version.toString())
+            }
         }
     }
 }

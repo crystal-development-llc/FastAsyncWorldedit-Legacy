@@ -1,5 +1,6 @@
 package com.boydti.fawe;
 
+import co.crystaldev.fawe.core.PluginInfo;
 import com.boydti.fawe.command.Cancel;
 import com.boydti.fawe.config.BBC;
 import com.boydti.fawe.config.Commands;
@@ -438,14 +439,9 @@ public class Fawe {
         File file = new File(this.IMP.getDirectory(), "config.yml");
         Settings.IMP.PLATFORM = IMP.getPlatform().replace("\"", "");
         try {
-            InputStream stream = getClass().getResourceAsStream("/fawe.properties");
-            java.util.Scanner scanner = new java.util.Scanner(stream).useDelimiter("\\A");
-            String versionString = scanner.next().trim();
-            scanner.close();
-            this.version = new FaweVersion(versionString);
+            this.version = new FaweVersion();
             Settings.IMP.DATE = new Date(100 + version.year, version.month, version.day).toGMTString();
-            Settings.IMP.BUILD = "https://ci.athion.net/job/FastAsyncWorldEdit/" + version.build;
-            Settings.IMP.COMMIT = "https://github.com/boy0001/FastAsyncWorldedit/commit/" + Integer.toHexString(version.hash);
+            Settings.IMP.COMMIT = PluginInfo.GITHUB_URL + "/commit/" + PluginInfo.COMMIT;
         } catch (Throwable ignore) {}
         Settings.IMP.reload(file);
         // Setting up message.yml
