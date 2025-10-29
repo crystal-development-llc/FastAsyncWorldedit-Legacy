@@ -374,7 +374,7 @@ public class ClipboardCommands extends MethodCommands {
             if (Settings.IMP.WEB.SHORTEN_URLS) {
                 // TODO fix or remove
                 try {
-                    urlText = MainUtil.getText("https://empcraft.com/s/?" + URLEncoder.encode(url.toString(), "UTF-8"));
+                    urlText = MainUtil.getText("https://athion.net/s/?" + URLEncoder.encode(url.toString(), "UTF-8"));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
