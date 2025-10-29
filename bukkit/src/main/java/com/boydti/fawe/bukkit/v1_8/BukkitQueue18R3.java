@@ -18,21 +18,14 @@ import com.sk89q.worldedit.world.biome.BaseBiome;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
+
 import net.minecraft.server.v1_8_R3.Block;
 import net.minecraft.server.v1_8_R3.BlockPosition;
 import net.minecraft.server.v1_8_R3.Chunk;
 import net.minecraft.server.v1_8_R3.ChunkSection;
 import net.minecraft.server.v1_8_R3.Entity;
 import net.minecraft.server.v1_8_R3.EntityPlayer;
-import net.minecraft.server.v1_8_R3.EntitySlice;
 import net.minecraft.server.v1_8_R3.EntityTracker;
 import net.minecraft.server.v1_8_R3.EntityTypes;
 import net.minecraft.server.v1_8_R3.EnumDifficulty;
@@ -482,6 +475,7 @@ public class BukkitQueue18R3 extends BukkitQueue_0<net.minecraft.server.v1_8_R3.
                 return;
             }
 
+            final boolean normalEnvironment = nmsWorld.getWorld().getEnvironment() == World.Environment.NORMAL;
             LongHashMap<Object> map = (LongHashMap<Object>) fieldChunkMap.get(chunkMap);
             long pair = (long) x + 2147483647L | (long) z + 2147483647L << 32;
             Object playerChunk = map.getEntry(pair);
@@ -495,8 +489,7 @@ public class BukkitQueue18R3 extends BukkitQueue_0<net.minecraft.server.v1_8_R3.
             ChunkSection[] sections = nmsChunk.getSections();
             for (int i = 0; i < sections.length; i++) {
                 if (sections[i] == null) {
-                    sections[i] = emptySection;
-                    empty = true;
+                    sections[i] = new ChunkSection(i << 4, normalEnvironment);
                 }
             }
             // Send chunks
@@ -512,7 +505,7 @@ public class BukkitQueue18R3 extends BukkitQueue_0<net.minecraft.server.v1_8_R3.
                 player.playerConnection.sendPacket(packet);
             }
             // Send tiles
-            for (Map.Entry<BlockPosition, TileEntity> entry : nmsChunk.getTileEntities().entrySet()) {
+            for (Map.Entry<BlockPosition, TileEntity> entry : new HashMap<>(nmsChunk.getTileEntities()).entrySet()) {
                 TileEntity tile = entry.getValue();
                 Packet tilePacket = tile.getUpdatePacket();
                 for (EntityPlayer player : players) {
