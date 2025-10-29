@@ -987,7 +987,7 @@ public class LocalSession implements TextureHolder {
      * Get the tool assigned to the item.
      *
      * @param item the item type ID
-     * @return the tool, which may be {@link null}
+     * @return the tool, which may be null
      */
     @Deprecated
     @Nullable

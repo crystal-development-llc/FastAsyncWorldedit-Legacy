@@ -31,3 +31,16 @@ sourceSets {
         }
     }
 }
+
+tasks {
+    javadoc {
+        val v = libs.versions
+        applyLinks(
+            "https://intellectualsites.github.io/fastasyncworldedit-javadocs/worldedit-core/",
+            "https://lib.alpn.cloud/javadoc/snapshots/co/crystaldev/plotsquared-core/${v.p2.get()}/raw/",
+            "https://lib.alpn.cloud/javadoc/mirrors/it/unimi/dsi/fastutil/8.5.15/raw/",
+            "https://lib.alpn.cloud/javadoc/mirrors/com/google/code/gson/gson/${v.gson.get()}/raw/",
+            "https://lib.alpn.cloud/javadoc/mirrors/org/yaml/snakeyaml/${v.snakeyaml.get()}/raw/",
+        )
+    }
+}

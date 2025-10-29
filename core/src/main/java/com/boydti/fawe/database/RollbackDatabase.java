@@ -331,7 +331,6 @@ public class RollbackDatabase extends AsyncNotifyQueue {
      * Checks if a connection is open with the database
      *
      * @return true if the connection is open
-     * @throws java.sql.SQLException if the connection cannot be checked
      */
     public boolean checkConnection() {
         try {

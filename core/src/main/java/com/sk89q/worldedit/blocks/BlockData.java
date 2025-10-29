@@ -340,9 +340,9 @@ public final class BlockData {
     }
 
     /**
-     * Rotate a block's data value -90 degrees (north<-east<-south<-west<-north);
+     * Rotate a block's data value -90 degrees (north&lt;-east&lt;-south&lt;-west&lt;-north);
      *
-     * @param type the type ID of the bock
+     * @param type the type ID of the block
      * @param data the data ID of the block
      * @return the new data value
      */

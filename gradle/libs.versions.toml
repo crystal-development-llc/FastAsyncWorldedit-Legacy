@@ -48,7 +48,6 @@ griefprevention = { group = "me.ryanhamshire", name = "GriefPrevention", version
 mapmanager = { group = "org.inventivetalent", name = "mapmanager", version.ref = "mapmanager" }
 massiveCore = { group = "com.massivecraft", name = "mcore", version.ref = "massive-core" }
 massiveFactions = { group = "com.massivecraft.factions", name = "factions", version.ref = "massive-factions" }
-p2Bukkit = { group = "co.crystaldev", name = "plotsquared-bukkit", version.ref = "p2" }
 p2Core = { group = "co.crystaldev", name = "plotsquared-core", version.ref = "p2" }
 papi = { group = "me.clip", name = "placeholderapi", version.ref = "papi" }
 plotmeCore = { group = "com.worldcretornica", name = "plotme_core", version.ref = "plotme" }

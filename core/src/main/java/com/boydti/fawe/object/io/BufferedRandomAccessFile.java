@@ -35,7 +35,7 @@ import java.util.Arrays;
  * functioning of the <code>RandomAccessFile</code> methods that are not
  * overridden here relies on the implementation of those methods in the
  * superclass.
- * Author : Avinash Lakshman ( alakshman@facebook.com) & Prashant Malik ( pmalik@facebook.com )
+ * Author : Avinash Lakshman ( alakshman@facebook.com) and Prashant Malik ( pmalik@facebook.com )
  */
 
 public class BufferedRandomAccessFile extends RandomAccessFile {

@@ -2153,7 +2153,7 @@ public final class SparseBitSet implements Cloneable, Serializable {
      * <pre>
      *  and| 0 1
      *    0| 0 0
-     *    1| 0 1 <pre>
+     *    1| 0 1 </pre>
      */
     protected class AndStrategy extends AbstractStrategy {
         @Override
@@ -2205,7 +2205,7 @@ public final class SparseBitSet implements Cloneable, Serializable {
      * <pre>
      * andNot| 0 1
      *      0| 0 0
-     *      1| 1 0 <pre>
+     *      1| 1 0 </pre>
      */
     protected class AndNotStrategy extends AbstractStrategy {
         @Override
@@ -2246,7 +2246,7 @@ public final class SparseBitSet implements Cloneable, Serializable {
      * <pre>
      * clear| 0 1
      *     0| 0 0
-     *     1| 0 0 <pre>
+     *     1| 0 0 </pre>
      */
     protected class ClearStrategy extends AbstractStrategy {
         @Override
@@ -2285,7 +2285,7 @@ public final class SparseBitSet implements Cloneable, Serializable {
      * <pre>
      * get| 0 1
      *   0| 0 1
-     *   1| 0 1 <pre>
+     *   1| 0 1 </pre>
      */
     protected class CopyStrategy extends AbstractStrategy {
         @Override
@@ -2327,7 +2327,7 @@ public final class SparseBitSet implements Cloneable, Serializable {
      * <pre>
      * equals| 0 1
      *      0| 0 -
-     *      1| - - <pre>
+     *      1| - - </pre>
      */
     protected class EqualsStrategy extends AbstractStrategy {
         boolean result; // Used to hold result of the comparison
@@ -2378,7 +2378,7 @@ public final class SparseBitSet implements Cloneable, Serializable {
      * <pre>
      * flip| 0 1
      *    0| 1 1
-     *    1| 0 0 <pre>
+     *    1| 0 0 </pre>
      */
     protected class FlipStrategy extends AbstractStrategy {
         @Override
@@ -2422,7 +2422,7 @@ public final class SparseBitSet implements Cloneable, Serializable {
      * <pre>
      * intersect| 0 1
      *         0| 0 0
-     *         1| 1 1 <pre>
+     *         1| 1 1 </pre>
      */
     protected class IntersectsStrategy extends AbstractStrategy {
         /**
@@ -2479,7 +2479,7 @@ public final class SparseBitSet implements Cloneable, Serializable {
      * <pre>
      *   or| 0 1
      *    0| 0 1
-     *    1| 1 1 <pre>
+     *    1| 1 1 </pre>
      */
     protected class OrStrategy extends AbstractStrategy {
         @Override
@@ -2522,7 +2522,7 @@ public final class SparseBitSet implements Cloneable, Serializable {
      * <pre>
      * set| 0 1
      *   0| 1 1
-     *   1| 1 1 <pre>
+     *   1| 1 1 </pre>
      */
     protected class SetStrategy extends AbstractStrategy {
         @Override
@@ -2562,7 +2562,7 @@ public final class SparseBitSet implements Cloneable, Serializable {
      * <pre>
      *  update| 0 1
      *       0| 0 0
-     *       1| 1 1 <pre>
+     *       1| 1 1 </pre>
      *
      * @see SparseBitSet#statisticsUpdate()
      */
@@ -2719,7 +2719,7 @@ public final class SparseBitSet implements Cloneable, Serializable {
      * <pre>
      * xor| 0 1
      *   0| 0 1
-     *   1| 1 0 <pre>
+     *   1| 1 0 </pre>
      */
     protected class XorStrategy extends AbstractStrategy {
         @Override

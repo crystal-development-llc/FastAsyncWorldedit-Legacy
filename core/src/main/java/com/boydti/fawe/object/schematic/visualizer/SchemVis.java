@@ -42,7 +42,7 @@ import java.util.*;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * An Immutable virtual world used to display & select schematics
+ * An Immutable virtual world used to display and select schematics
  */
 public class SchemVis extends ImmutableVirtualWorld {
     private static final WeakHashMap<File, Integer> DIMENSION_CACHE = new WeakHashMap<>();

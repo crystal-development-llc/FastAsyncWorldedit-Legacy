@@ -246,8 +246,6 @@ public class Metrics {
 
     /**
      * Enables metrics for the server by setting "opt-out" to false in the config file and starting the metrics task.
-     *
-     * @throws java.io.IOException
      */
     public void enable() {
         // Enable Task, if it is not running

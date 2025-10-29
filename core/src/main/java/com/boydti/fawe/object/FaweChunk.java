@@ -71,9 +71,9 @@ public abstract class FaweChunk<T> implements Callable<FaweChunk> {
     }
 
     /**
-     * Get a hashcode; unique below abs(x/z) < Short.MAX_VALUE
+     * Get a hashcode; unique below abs(x/z) &lt; Short.MAX_VALUE
      *
-     * @return
+     * @return the hash code
      */
     @Override
     public int hashCode() {
@@ -96,11 +96,11 @@ public abstract class FaweChunk<T> implements Callable<FaweChunk> {
 
     /**
      * Get the combined block id at a location<br>
-     * combined = (id <<<< 4) + data
+     * combined = (id &lt;&lt; 4) + data
      *
-     * @param x
-     * @param y
-     * @param z
+     * @param x the x coordinate
+     * @param y the y coordinate
+     * @param z the z coordinate
      * @return The combined id
      */
     public abstract int getBlockCombinedId(int x, int y, int z);

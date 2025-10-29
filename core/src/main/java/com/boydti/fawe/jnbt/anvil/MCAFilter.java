@@ -62,11 +62,9 @@ public class MCAFilter<T> extends IterableThreadLocal<T> {
 
     /**
      * Do something with the MCAChunk<br>
-     * - Return null if you don't want to filter blocks<br>
-     * - Return the chunk if you do want to filter blocks<br>
      *
      * @param chunk
-     * @return
+     * @return the chunk if you do want to filter blocks or null if you don't
      */
     public MCAChunk applyChunk(MCAChunk chunk, T cache) {
         return chunk;
@@ -90,7 +88,6 @@ public class MCAFilter<T> extends IterableThreadLocal<T> {
      *
      * @param chunk
      * @param cache
-     * @return
      */
     public void finishChunk(MCAChunk chunk, T cache) {
     }
@@ -100,7 +97,6 @@ public class MCAFilter<T> extends IterableThreadLocal<T> {
      *
      * @param file
      * @param cache
-     * @return
      */
     public void finishFile(MCAFile file, T cache) {
     }

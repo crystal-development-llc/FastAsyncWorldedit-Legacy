@@ -41,7 +41,6 @@ public class RegionMaskTestFunction implements RegionFunction {
      * Create a new masking filter.
      *
      * @param mask the mask
-     * @param function the function
      */
     public RegionMaskTestFunction(Mask mask, RegionFunction success, RegionFunction failure) {
         checkNotNull(success);

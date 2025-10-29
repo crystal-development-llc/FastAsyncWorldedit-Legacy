@@ -391,7 +391,7 @@ public interface FaweQueue extends HasFaweQueue, Extent {
     void sendChunk(int x, int z, int bitMask);
 
     /**
-     * This method is called when the server is < 1% available memory
+     * This method is called when the server is &lt; 1% available memory
      */
     void clear();
 

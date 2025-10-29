@@ -508,7 +508,6 @@ public class FaweAPI {
      *
      * @param file
      * @param loc
-     * @return
      */
     @Deprecated
     public static void streamSchematic(final File file, final FaweLocation loc) {

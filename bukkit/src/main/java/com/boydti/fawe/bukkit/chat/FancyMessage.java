@@ -808,7 +808,6 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
      * <li>The core text of the message part.</li>
      * </ol>
      * The primary omissions are tooltips and clickable actions. Consequently, this method should be used only as a last resort.
-     * </p>
      * <p>
      * Color and formatting can be removed from the returned string by using {@link org.bukkit.ChatColor#stripColor(String)}.</p>
      *

@@ -113,7 +113,7 @@ import static com.sk89q.worldedit.regions.Regions.minimumBlockY;
  * An {@link Extent} that handles history, {@link BlockBag}s, change limits,
  * block re-ordering, and much more. Most operations in WorldEdit use this class.
  * <p>
- * <p>Most of the actual functionality is implemented with a number of other
+ * Most of the actual functionality is implemented with a number of other
  * {@link Extent}s that are chained together. For example, history is logged
  * using the {@link ChangeSetExtent}.</p>
  */
@@ -1164,7 +1164,6 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
      * @param block       the block
      * @param probability a probability between 0 and 1, inclusive
      * @return whether a block was changed
-     * @throws MaxChangedBlocksException thrown if too many blocks are changed
      */
     public boolean setChanceBlockIfAir(final Vector position, final BaseBlock block, final double probability) {
         return (FaweCache.RANDOM.random(65536) <= (probability * 65536)) && this.setBlockIfAir(position, block);
@@ -1176,7 +1175,6 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
      * @param position the position
      * @param block    the block to set
      * @return if block was changed
-     * @throws MaxChangedBlocksException thrown if too many blocks are changed
      * @deprecated Use your own method
      */
     @Deprecated
@@ -1428,7 +1426,7 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
      * @param depth     the maximum depth, starting from the origin
      * @param direction the direction to fill
      * @return number of blocks affected
-     * @throws MaxChangedBlocksException thrown if too many blocks are changed
+     * @throws RuntimeException thrown if too many blocks are changed
      */
     public int fillDirection(final Vector origin, final Pattern pattern, final double radius, final int depth, Vector direction) {
         checkNotNull(origin);
@@ -1463,7 +1461,7 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
      * @param depth     the maximum depth, starting from the origin
      * @param recursive whether a breadth-first search should be performed
      * @return number of blocks affected
-     * @throws MaxChangedBlocksException thrown if too many blocks are changed
+     * @throws RuntimeException thrown if too many blocks are changed
      */
     @SuppressWarnings("deprecation")
     public int fillXZ(final Vector origin, final BaseBlock block, final double radius, final int depth, final boolean recursive) {
@@ -1479,7 +1477,7 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
      * @param depth     the maximum depth, starting from the origin, with 1 as the smallest depth
      * @param recursive whether a breadth-first search should be performed
      * @return number of blocks affected
-     * @throws MaxChangedBlocksException thrown if too many blocks are changed
+     * @throws RuntimeException thrown if too many blocks are changed
      */
     @SuppressWarnings("deprecation")
     public int fillXZ(final Vector origin, final Pattern pattern, final double radius, final int depth, final boolean recursive) {
@@ -1516,7 +1514,7 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
      * @param apothem  an apothem of the cuboid (on the XZ plane), where the minimum is 1
      * @param height   the height of the cuboid, where the minimum is 1
      * @return number of blocks affected
-     * @throws MaxChangedBlocksException thrown if too many blocks are changed
+     * @throws RuntimeException thrown if too many blocks are changed
      */
     @SuppressWarnings("deprecation")
     public int removeAbove(final Vector position, final int apothem, final int height) {
@@ -1537,7 +1535,7 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
      * @param apothem  an apothem of the cuboid (on the XZ plane), where the minimum is 1
      * @param height   the height of the cuboid, where the minimum is 1
      * @return number of blocks affected
-     * @throws MaxChangedBlocksException thrown if too many blocks are changed
+     * @throws RuntimeException thrown if too many blocks are changed
      */
     @SuppressWarnings("deprecation")
     public int removeBelow(final Vector position, final int apothem, final int height) {
@@ -1558,7 +1556,7 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
      * @param blockType the block type to match
      * @param apothem   an apothem of the cuboid, where the minimum is 1
      * @return number of blocks affected
-     * @throws MaxChangedBlocksException thrown if too many blocks are changed
+     * @throws RuntimeException thrown if too many blocks are changed
      */
     @SuppressWarnings("deprecation")
     public int removeNear(final Vector position, final int blockType, final int apothem) {
@@ -1611,7 +1609,7 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
      * @param region the region
      * @param block  the block
      * @return number of blocks affected
-     * @throws MaxChangedBlocksException thrown if too many blocks are changed
+     * @throws RuntimeException thrown if too many blocks are changed
      */
     @SuppressWarnings("deprecation")
     public int setBlocks(final Region region, final BaseBlock block) {
@@ -1645,7 +1643,7 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
      * @param region  the region
      * @param pattern the pattern that provides the replacement block
      * @return number of blocks affected
-     * @throws MaxChangedBlocksException thrown if too many blocks are changed
+     * @throws RuntimeException thrown if too many blocks are changed
      */
     @SuppressWarnings("deprecation")
     public int setBlocks(final Region region, final Pattern pattern) {
@@ -1671,7 +1669,7 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
      * @param filter      a list of block types to match, or null to use {@link com.sk89q.worldedit.masks.ExistingBlockMask}
      * @param replacement the replacement block
      * @return number of blocks affected
-     * @throws MaxChangedBlocksException thrown if too many blocks are changed
+     * @throws RuntimeException thrown if too many blocks are changed
      */
     @SuppressWarnings("deprecation")
     public int replaceBlocks(final Region region, final Set<BaseBlock> filter, final BaseBlock replacement) {
@@ -1692,7 +1690,7 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
      * @param filter  a list of block types to match, or null to use {@link com.sk89q.worldedit.masks.ExistingBlockMask}
      * @param pattern the pattern that provides the new blocks
      * @return number of blocks affected
-     * @throws MaxChangedBlocksException thrown if too many blocks are changed
+     * @throws RuntimeException thrown if too many blocks are changed
      */
     @SuppressWarnings("deprecation")
     public int replaceBlocks(final Region region, final Set<BaseBlock> filter, final Pattern pattern) {
@@ -1715,7 +1713,7 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
      * @param mask    the mask that blocks must match
      * @param pattern the pattern that provides the new blocks
      * @return number of blocks affected
-     * @throws MaxChangedBlocksException thrown if too many blocks are changed
+     * @throws RuntimeException thrown if too many blocks are changed
      */
     @SuppressWarnings("deprecation")
     public int replaceBlocks(final Region region, final Mask mask, final Pattern pattern) {
@@ -1737,7 +1735,7 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
      * @param region  the region to find the center of
      * @param pattern the replacement pattern
      * @return the number of blocks placed
-     * @throws MaxChangedBlocksException thrown if too many blocks are changed
+     * @throws RuntimeException thrown if too many blocks are changed
      */
     @SuppressWarnings("deprecation")
     public int center(final Region region, final Pattern pattern) {
@@ -1756,7 +1754,7 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
      * @param region the region
      * @param block  the block to place
      * @return number of blocks affected
-     * @throws MaxChangedBlocksException thrown if too many blocks are changed
+     * @throws RuntimeException thrown if too many blocks are changed
      */
     @SuppressWarnings("deprecation")
     public int makeCuboidFaces(final Region region, final BaseBlock block) {
@@ -1769,7 +1767,7 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
      * @param region  the region
      * @param pattern the pattern to place
      * @return number of blocks affected
-     * @throws MaxChangedBlocksException thrown if too many blocks are changed
+     * @throws RuntimeException thrown if too many blocks are changed
      */
     @SuppressWarnings("deprecation")
     public int makeCuboidFaces(final Region region, final Pattern pattern) {
@@ -1810,7 +1808,7 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
      * @param region the region
      * @param block  the block to place
      * @return number of blocks affected
-     * @throws MaxChangedBlocksException thrown if too many blocks are changed
+     * @throws RuntimeException thrown if too many blocks are changed
      */
     @SuppressWarnings("deprecation")
     public int makeCuboidWalls(final Region region, final BaseBlock block) {
@@ -1824,7 +1822,7 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
      * @param region  the region
      * @param pattern the pattern to place
      * @return number of blocks affected
-     * @throws MaxChangedBlocksException thrown if too many blocks are changed
+     * @throws RuntimeException thrown if too many blocks are changed
      */
     @SuppressWarnings("deprecation")
     public int makeCuboidWalls(final Region region, final Pattern pattern) {
@@ -1878,7 +1876,7 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
      * @param region the region
      * @param block  the placed block
      * @return number of blocks affected
-     * @throws MaxChangedBlocksException thrown if too many blocks are changed
+     * @throws RuntimeException thrown if too many blocks are changed
      */
     @SuppressWarnings("deprecation")
     public int overlayCuboidBlocks(final Region region, final BaseBlock block) {
@@ -1893,7 +1891,7 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
      * @param region  the region
      * @param pattern the placed block pattern
      * @return number of blocks affected
-     * @throws MaxChangedBlocksException thrown if too many blocks are changed
+     * @throws RuntimeException thrown if too many blocks are changed
      */
     @SuppressWarnings("deprecation")
     public int overlayCuboidBlocks(final Region region, final Pattern pattern) {
@@ -1915,7 +1913,7 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
      *
      * @param region the region to affect
      * @return number of blocks affected
-     * @throws MaxChangedBlocksException thrown if too many blocks are changed
+     * @throws RuntimeException thrown if too many blocks are changed
      */
     public int naturalizeCuboidBlocks(final Region region) {
         checkNotNull(region);
@@ -1938,7 +1936,7 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
      * @param count   the number of times to stack
      * @param copyAir true to also copy air blocks
      * @return number of blocks affected
-     * @throws MaxChangedBlocksException thrown if too many blocks are changed
+     * @throws RuntimeException thrown if too many blocks are changed
      */
     public int stackCuboidRegion(final Region region, final Vector dir, final int count, final boolean copyAir, boolean copyEntities, boolean copyBiomes) {
         checkNotNull(region);
@@ -1973,7 +1971,7 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
      * @param copyAir     true to copy air blocks
      * @param replacement the replacement block to fill in after moving, or null to use air
      * @return number of blocks moved
-     * @throws MaxChangedBlocksException thrown if too many blocks are changed
+     * @throws RuntimeException thrown if too many blocks are changed
      */
     public int moveRegion(final Region region, final Vector dir, final int distance, final boolean copyAir, final BaseBlock replacement) {
         return moveRegion(region, dir, distance, copyAir, true, false, replacement);
@@ -2030,7 +2028,7 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
      * @param copyAir     true to copy air blocks
      * @param replacement the replacement block to fill in after moving, or null to use air
      * @return number of blocks moved
-     * @throws MaxChangedBlocksException thrown if too many blocks are changed
+     * @throws RuntimeException thrown if too many blocks are changed
      */
     public int moveCuboidRegion(final Region region, final Vector dir, final int distance, final boolean copyAir, final BaseBlock replacement) {
         return this.moveRegion(region, dir, distance, copyAir, replacement);
@@ -2042,7 +2040,7 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
      * @param origin the origin to drain from, which will search a 3x3 area
      * @param radius the radius of the removal, where a value should be 0 or greater
      * @return number of blocks affected
-     * @throws MaxChangedBlocksException thrown if too many blocks are changed
+     * @throws RuntimeException thrown if too many blocks are changed
      */
     public int drainArea(final Vector origin, final double radius) {
         checkNotNull(origin);
@@ -2086,7 +2084,7 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
      * @param moving     the block ID of the moving liquid
      * @param stationary the block ID of the stationary liquid
      * @return number of blocks affected
-     * @throws MaxChangedBlocksException thrown if too many blocks are changed
+     * @throws RuntimeException thrown if too many blocks are changed
      */
     public int fixLiquid(final Vector origin, final double radius, final int moving, final int stationary) {
         checkNotNull(origin);
@@ -2146,7 +2144,7 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
      * @param height The cylinder's up/down extent. If negative, extend downward.
      * @param filled If false, only a shell will be generated.
      * @return number of blocks changed
-     * @throws MaxChangedBlocksException thrown if too many blocks are changed
+     * @throws RuntimeException thrown if too many blocks are changed
      */
     public int makeCylinder(final Vector pos, final Pattern block, final double radius, final int height, final boolean filled) {
         return this.makeCylinder(pos, block, radius, radius, height, filled);
@@ -2162,7 +2160,7 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
      * @param height  The cylinder's up/down extent. If negative, extend downward.
      * @param filled  If false, only a shell will be generated.
      * @return number of blocks changed
-     * @throws MaxChangedBlocksException thrown if too many blocks are changed
+     * @throws RuntimeException thrown if too many blocks are changed
      */
     public int makeCylinder(Vector pos, final Pattern block, double radiusX, double radiusZ, int height, final boolean filled) {
         return makeCylinder(pos, block, radiusX, radiusZ, height, 0, filled);
@@ -2376,7 +2374,7 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
      * @param radius The sphere's radius
      * @param filled If false, only a shell will be generated.
      * @return number of blocks changed
-     * @throws MaxChangedBlocksException thrown if too many blocks are changed
+     * @throws RuntimeException thrown if too many blocks are changed
      */
     public int makeSphere(final Vector pos, final Pattern block, final double radius, final boolean filled) {
         return this.makeSphere(pos, block, radius, radius, radius, filled);
@@ -2392,7 +2390,7 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
      * @param radiusZ The sphere/ellipsoid's largest east/west extent
      * @param filled  If false, only a shell will be generated.
      * @return number of blocks changed
-     * @throws MaxChangedBlocksException thrown if too many blocks are changed
+     * @throws RuntimeException thrown if too many blocks are changed
      */
     public int makeSphere(final Vector pos, final Pattern block, double radiusX, double radiusY, double radiusZ, final boolean filled) {
         radiusX += 0.5;
@@ -2471,7 +2469,7 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
      * @param size     size of pyramid
      * @param filled   true if filled
      * @return number of blocks changed
-     * @throws MaxChangedBlocksException thrown if too many blocks are changed
+     * @throws RuntimeException thrown if too many blocks are changed
      */
     public int makePyramid(final Vector position, final Pattern block, int size, final boolean filled) {
         final int height = size;
@@ -2499,7 +2497,7 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
      * @param position the position
      * @param radius   the radius
      * @return number of blocks affected
-     * @throws MaxChangedBlocksException thrown if too many blocks are changed
+     * @throws RuntimeException thrown if too many blocks are changed
      */
     public int thaw(final Vector position, final double radius) {
         final double radiusSq = radius * radius;
@@ -2550,7 +2548,7 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
      * @param position a position
      * @param radius   a radius
      * @return number of blocks affected
-     * @throws MaxChangedBlocksException thrown if too many blocks are changed
+     * @throws RuntimeException thrown if too many blocks are changed
      */
     public int simulateSnow(final Vector position, final double radius) {
 
@@ -2617,7 +2615,7 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
      * @param position a position
      * @param radius   a radius
      * @return number of blocks affected
-     * @throws MaxChangedBlocksException thrown if too many blocks are changed
+     * @throws RuntimeException thrown if too many blocks are changed
      * @deprecated Use {@link #green(Vector, double, boolean)}.
      */
     @Deprecated
@@ -2632,7 +2630,7 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
      * @param radius         a radius
      * @param onlyNormalDirt only affect normal dirt (data value 0)
      * @return number of blocks affected
-     * @throws MaxChangedBlocksException thrown if too many blocks are changed
+     * @throws RuntimeException thrown if too many blocks are changed
      */
     public int green(final Vector position, final double radius, final boolean onlyNormalDirt) {
 
@@ -2694,7 +2692,7 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
      * @param position the base position
      * @param apothem  the apothem of the (square) area
      * @return number of patches created
-     * @throws MaxChangedBlocksException thrown if too many blocks are changed
+     * @throws RuntimeException thrown if too many blocks are changed
      */
     public int makePumpkinPatches(final Vector position, final int apothem) {
         // We want to generate pumpkins
@@ -2721,7 +2719,7 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
      * @param density       between 0 and 1, inclusive
      * @param treeGenerator the tree genreator
      * @return number of trees created
-     * @throws MaxChangedBlocksException thrown if too many blocks are changed
+     * @throws RuntimeException thrown if too many blocks are changed
      */
     public int makeForest(final Vector basePosition, final int size, final double density, final TreeGenerator treeGenerator) {
         try {
@@ -2957,7 +2955,7 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
      * @param thickness the thickness of the shell to leave (manhattan distance)
      * @param pattern   The block pattern to use
      * @return number of blocks affected
-     * @throws MaxChangedBlocksException thrown if too many blocks are changed
+     * @throws RuntimeException thrown if too many blocks are changed
      */
     public int hollowOutRegion(final Region region, final int thickness, final Pattern pattern) {
 
@@ -3044,7 +3042,7 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
      * @param radius  The radius (thickness) of the line.
      * @param filled  If false, only a shell will be generated.
      * @return number of blocks affected
-     * @throws MaxChangedBlocksException thrown if too many blocks are changed
+     * @throws RuntimeException thrown if too many blocks are changed
      */
     public int drawLine(final Pattern pattern, final Vector pos1, final Vector pos2, final double radius, final boolean filled, boolean flat) {
 
@@ -3117,7 +3115,7 @@ public class EditSession extends AbstractDelegateExtent implements HasFaweQueue,
      * @param radius      The radius (thickness) of the spline.
      * @param filled      If false, only a shell will be generated.
      * @return number of blocks affected
-     * @throws MaxChangedBlocksException thrown if too many blocks are changed
+     * @throws RuntimeException thrown if too many blocks are changed
      */
     public int drawSpline(final Pattern pattern, final List<Vector> nodevectors, final double tension, final double bias, final double continuity, final double quality, final double radius, final boolean filled) {
         LocalBlockVectorSet vset = new LocalBlockVectorSet();

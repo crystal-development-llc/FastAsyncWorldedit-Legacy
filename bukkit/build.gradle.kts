@@ -29,7 +29,6 @@ dependencies {
     compileOnly(libs.vault)
     compileOnly(libs.worldeditBukkit)
     compileOnly(libs.worldguard)
-
 }
 
 tasks {
@@ -44,5 +43,16 @@ tasks {
     }
     shadowJar {
         relocate("com.google.gson", "com.sk89q.worldedit.internal.gson")
+    }
+    javadoc {
+        val v = libs.versions
+        applyLinks(
+            "https://hub.spigotmc.org/javadocs/spigot/",
+            "https://lib.alpn.cloud/javadoc/mirrors/com/wasteofplastic/askyblock/${v.askyblock.get()}/raw/",
+            "https://lib.alpn.cloud/javadoc/mirrors/com/sk89q/worldguard/${v.worldguard.get()}/raw/",
+            "https://intellectualsites.github.io/fastasyncworldedit-javadocs/worldedit-core/",
+            "https://intellectualsites.github.io/fastasyncworldedit-javadocs/worldedit-bukkit/",
+            "http://palmergames.com/javadoc/towny-bukkit/"
+        )
     }
 }

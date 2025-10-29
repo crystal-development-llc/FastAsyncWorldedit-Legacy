@@ -221,7 +221,7 @@ public final class LZ4Factory {
      * <li>It should be in range [1, 17]</li>
      * <li>A compression level higher than 17 would be treated as 17.</li>
      * <li>A compression level lower than 1 would be treated as 9.</li>
-     * </ol></p>
+     * </ol>
      */
     public LZ4Compressor highCompressor(int compressionLevel) {
         if (compressionLevel > MAX_COMPRESSION_LEVEL) {
