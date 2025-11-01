@@ -59,7 +59,7 @@ public class StringArgumentStack implements ArgumentStack {
     public StringArgumentStack(
             CommandContext context, String arguments, boolean nonNullBoolean) {
         this.context = context;
-        this.arguments = CommandContext.split(arguments);
+        this.arguments = arguments == null ? new String[0] : CommandContext.split(arguments);
         this.nonNullBoolean = nonNullBoolean;
     }
 
