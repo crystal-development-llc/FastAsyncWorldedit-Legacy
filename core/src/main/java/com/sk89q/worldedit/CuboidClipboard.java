@@ -21,16 +21,13 @@ package com.sk89q.worldedit;
 
 import com.boydti.fawe.FaweCache;
 import com.boydti.fawe.object.IntegerTrio;
-import com.boydti.fawe.util.MainUtil;
 import com.sk89q.jnbt.CompoundTag;
 import com.sk89q.worldedit.blocks.BaseBlock;
 import com.sk89q.worldedit.blocks.BlockID;
 import com.sk89q.worldedit.command.ClipboardCommands;
 import com.sk89q.worldedit.command.SchematicCommands;
 import com.sk89q.worldedit.extent.Extent;
-import com.sk89q.worldedit.extent.clipboard.BlockArrayClipboard;
 import com.sk89q.worldedit.extent.clipboard.Clipboard;
-import com.sk89q.worldedit.extent.clipboard.io.ClipboardFormat;
 import com.sk89q.worldedit.function.operation.ForwardExtentCopy;
 import com.sk89q.worldedit.regions.CuboidRegion;
 import com.sk89q.worldedit.regions.Region;
@@ -94,7 +91,7 @@ public class CuboidClipboard {
      */
     public CuboidClipboard(Vector size) {
         checkNotNull(size);
-        MainUtil.warnDeprecated(BlockArrayClipboard.class, ClipboardFormat.class);
+        //MainUtil.warnDeprecated(BlockArrayClipboard.class, ClipboardFormat.class);
         origin = new Vector();
         offset = new Vector();
         this.size = size;
@@ -114,7 +111,7 @@ public class CuboidClipboard {
     public CuboidClipboard(Vector size, Vector origin) {
         checkNotNull(size);
         checkNotNull(origin);
-        MainUtil.warnDeprecated(BlockArrayClipboard.class, ClipboardFormat.class);
+        //MainUtil.warnDeprecated(BlockArrayClipboard.class, ClipboardFormat.class);
         this.origin = origin;
         this.offset = new Vector();
         this.size = size;
@@ -136,7 +133,7 @@ public class CuboidClipboard {
         checkNotNull(size);
         checkNotNull(origin);
         checkNotNull(offset);
-        MainUtil.warnDeprecated(BlockArrayClipboard.class, ClipboardFormat.class);
+        //MainUtil.warnDeprecated(BlockArrayClipboard.class, ClipboardFormat.class);
         this.origin = origin;
         this.offset = offset;
         this.size = size;
