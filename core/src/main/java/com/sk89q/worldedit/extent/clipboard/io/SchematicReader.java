@@ -72,6 +72,9 @@ public class SchematicReader implements ClipboardReader {
             Fawe.debug("Input is corrupt!");
             e.printStackTrace();
             return new CorruptSchematicStreamer(rootStream, clipboardId).recover();
+        } finally {
+            rootStream.close();
+            inputStream.close();
         }
     }
 

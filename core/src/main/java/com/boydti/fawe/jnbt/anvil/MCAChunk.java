@@ -533,6 +533,7 @@ public class MCAChunk extends FaweChunk<Void> {
             });
         }
         streamer.readFully();
+        streamer.close();
     }
 
     public long filterBlocks(MutableMCABackedBaseBlock mutableBlock, MCAFilter filter) {

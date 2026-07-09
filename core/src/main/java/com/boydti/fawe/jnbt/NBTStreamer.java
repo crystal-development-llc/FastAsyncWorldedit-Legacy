@@ -28,7 +28,6 @@ public class NBTStreamer {
                 this.value2 = readers.get(node);
             }
         });
-        is.close();
     }
 
     /**
@@ -51,6 +50,9 @@ public class NBTStreamer {
             });
         } catch (FaweException ignore) {
         }
+    }
+
+    public void close() throws IOException {
         is.close();
     }
 

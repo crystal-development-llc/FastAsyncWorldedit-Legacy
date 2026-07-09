@@ -66,8 +66,7 @@ public class CorruptSchematicStreamer {
                         break;
                     }
                 } else {
-                    if (matchIndex == 2)
-                        matchIndex = 0;
+                    matchIndex = 0;
                 }
             }
             Fawe.debug(" - Recover " + matchTag + " = success");
@@ -237,23 +236,7 @@ public class CorruptSchematicStreamer {
             match("Entities", new CorruptSchematicStreamer.CorruptReader() {
                 @Override
                 public void run(DataInputStream in) throws IOException {
-                    int childType = in.readByte();
-                    int length = in.readInt();
-                    NBTInputStream nis = new NBTInputStream(in);
-                    for (int i = 0; i < length; ++i) {
-                        CompoundTag tag = (CompoundTag) nis.readTagPayload(childType, 1);
-                        int x = tag.getInt("x");
-                        int y = tag.getInt("y");
-                        int z = tag.getInt("z");
-                        String id = tag.getString("id");
-                        if (id.isEmpty()) {
-                            return;
-                        }
-                        ListTag positionTag = tag.getListTag("Pos");
-                        ListTag directionTag = tag.getListTag("Rotation");
-                        BaseEntity state = new BaseEntity(id, tag);
-                        fc.createEntity(clipboard, positionTag.asDouble(0), positionTag.asDouble(1), positionTag.asDouble(2), (float) directionTag.asDouble(0), (float) directionTag.asDouble(1), state);
-                    }
+                    // Corrupt schematic don't bother with entities
                 }
             });
             return clipboard;

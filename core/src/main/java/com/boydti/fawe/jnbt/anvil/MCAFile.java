@@ -347,7 +347,6 @@ public class MCAFile {
     public void streamChunk(byte[] data, RunnableVal<NBTStreamer> withStream) throws IOException {
         if (data != null) {
             try {
-                FastByteArrayInputStream nbtIn = new FastByteArrayInputStream(data);
                 FastByteArrayInputStream bais = new FastByteArrayInputStream(data);
                 InflaterInputStream iis = new InflaterInputStream(bais, new Inflater(), 1);
                 fieldBuf2.set(iis, byteStore2.get());
@@ -357,6 +356,7 @@ public class MCAFile {
                 NBTStreamer streamer = new NBTStreamer(nis);
                 withStream.run(streamer);
                 streamer.readQuick();
+                streamer.close();
             } catch (IllegalAccessException unlikely) {
                 unlikely.printStackTrace();
             }
